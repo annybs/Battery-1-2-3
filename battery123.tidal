@@ -1,0 +1,460 @@
+{-
+anny fm: battery 1,2,3
+originally recorded live @ the loft, brighton, 4th july 2014
+  _____
+ /    /
+/____/
+anny.audio/track/battery-123-live
+      __
+  c|||  o_
+c||||| ___o
+soundcloud.com/anny-fm/battery-123-live
+-}
+
+cps (125/60)
+
+let preload p s = d9 $ sound (samples p s) |+| end "0.00001"
+
+let halfosc = (/2).(+0.5)
+let halfosc1 = (+1).(/2)
+let thirdosc1 = (+1).(/3)
+
+let every' n o f = when ((== (o-1)) . (`mod` n)) f
+
+{-
+[1]
+-}
+
+d3 $ slow 4 $ s "bass3 [~ bass3] ! ~"
+  # n "0 1 0 0"
+  # begin "0.2"
+
+d3 $ slow 4 $ s "bass3 [~ bass3] ! ~"
+  # n "0 1 0 0"
+  # begin "0.2"
+  # speed (thirdosc1 <$> slow 8 sinewave1)
+
+d4 $ slow 8 $ rev . striate 256 $ s "hand*8"
+  # speed "0.7"
+
+d4 $ slow 8 $ rev . striate 256 $ s "hand*8"
+  # speed "0.7"
+  # shape ((/2) <$> slow (10%4) sinewave1)
+
+d2 $ slow 4 $ s "uxay [~ uxay] [psr:8 uxay] ~"
+  # n (density 3 $ run 2)
+
+d4 $ slow 8 $ rev . striate 256 $ sound "hand*8"
+  # speed "0.7"
+  # shape ((/2) <$> slow (10%4) sinewave1)
+  # pan (halfosc <$> slow (8%3) sinewave1)
+
+d2 $ slow 4 $ s "[uxay tok*2] [~ uxay] [psr:8 uxay] ~"
+  # n (density 3 $ run 2)
+
+d2 $ slow 2 $
+  jux (0.25 <~) $
+  slow 2 $ s "[uxay tok*2] [~ uxay] [psr:8 uxay] ~"
+  # n (density 3 $ run 2)
+
+d3 $ slow 2 $
+  spread slow [1,3] $
+  striate 16 $
+  s "bass3 [~ bass3] ! ~"
+  # n "0 1 0 0"
+  # begin "0.2"
+  # speed (halfosc1 <$> slow 8 sinewave1)
+  # gain "0.9"
+
+d1 $ slow 2 $ stack [
+  slow 2 $ s "peri:1 [~ peri:1] ! ~",
+  sound "~ psr:14"
+  ]
+
+d1 $ slow 2 $ sound "~ psr:14"
+
+d1 $ slow 2 $ stack [
+  every 4 (density 1.5) $ slow 2 $ s "peri:1 [~ peri:1] ! ~",
+  sound "~ psr:14"
+  ]
+
+d1 $ slow 2 $ sound "~ psr:14"
+
+d9 $ slow 2 $
+  s "[~ tacscan:13] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
+
+d9 $ slow 2 . whenmod 7 4 (density 1.5) $
+  s "[~ tacscan:13] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
+
+d1 $ overlay (s "peri:1") $ slow 2 $
+  s "~ psr:14"
+
+d1 $ slow 2 $ sound "~ psr:14"
+
+d6 $ slow 4 $ striate 32 $
+  s "warbler"
+  # n (slow 7 $ run 7)
+  # gain "0.8"
+
+d2 $ slow 2 $
+  spread slow [2,1] $
+  jux (0.25 <~) $
+  slow 2 $ s "[uxay tok*2] [~ uxay] [psr:8 uxay] ~"
+  # n (density 3 $ run 2)
+
+d1 $ overlay (s "peri:1") $ slow 2 $
+  s "~ psr:14"
+
+d1 $ overlay (s "peri:1") $ slow 2 $
+  every 2 (density 3) $ s "~ psr:14"
+
+mapM_ ($ silence) [d3,d9]
+
+d1 $ overlay (s "peri:1") $ slow 2 $
+  every' 8 8 (density 1.5) $ every 2 (density 3) $ sound "~ psr:14"
+
+d2 $ slow 2 $
+  slow 2 . spread slow [2,4,2,3] $
+  jux (0.25 <~) $
+  slow 2 $ s "[uxay tok*2] [~ uxay] [psr:8 uxay] ~"
+  # n (density 3 $ run 2)
+
+d4 silence
+
+d1 $ slow 2 $
+  every' 8 8 (density 1.5) $ every 2 (density 3) $ sound "~ psr:14"
+
+d1 silence
+d2 silence
+
+{-
+[2]
+-}
+
+d2 $ slow 2 $ s "uxay:1*2"
+
+d2 $ slow 2 $ s "uxay*4"
+  # n "1 0 1 2"
+
+d1 $ slow 2 $
+  s "psr:8*4 psr:8*2"
+  # gain "0.6"
+
+d1 $ slow 2 $
+  s "[[psr:8*4 psr:8*2] ! ! psr:8*8]/4"
+  # gain "0.6"
+
+d1 $ slow 2 $
+  every 3 (0.125 <~) $
+  s "[[psr:8*4 psr:8*2] ! ! psr:8*8]/4"
+  # gain "0.6"
+
+d1 $ overlay (s "peri:1") $ slow 2 $
+  every 3 (0.125 <~) $
+  s "[[psr:8*4 psr:8*2] ! ! psr:8*8]/4"
+  # gain "0.6"
+
+d2 $ slow 2 $ brak $
+  s "uxay*4"
+  # n "1 0 1 2"
+  # gain "0.8"
+  # speed "[0.7 1 1.2]/2"
+  # shape "0.4 0.3 0.6"
+
+d1 $ slow 2 $
+  every 3 (0.125 <~) $
+  s "[[psr:8*4 psr:8*2] ! ! psr:8*8]/4"
+  # gain "0.6"
+
+d6 silence
+
+d8 $ slow 2 $ whenmod 5 4 rev $ s "[~ trump ! !] ~"
+  # n (slow 3.2 $ run 4)
+  # gain "0.8"
+  # speed (halfosc1 <$> slow 4 sinewave1)
+  # vowel (slow 3.2 "a e o")
+  # shape "0.6"
+
+d1 $ overlay (s "peri:1") $ slow 2 $
+  every 3 (0.125 <~) $
+  s "[[psr:8*4 psr:8*2] ! ! psr:8*8]/4"
+  # gain "0.6"
+
+d2 $ brak . iter 4 $
+  s "uxay*4"
+  # n "1 0 1 2"
+  # gain "0.8"
+  # speed "[0.7 1 1.2]/2"
+  # shape "0.4 0.3 0.6"
+
+d8 $ slow 2 $ whenmod 5 4 rev $ s "trump*8"
+  # n (slow 3.2 $ run 4)
+  # gain "0.8"
+  # speed (halfosc1 <$> slow 4 sinewave1)
+  # vowel (slow 3.2 "a e o")
+  # shape "0.6"
+
+d3 $ slow 8 $ s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
+  # n (slow 2.8 "0 1 2")
+  # vowel "i"
+  # speed "0.8"
+
+d8 silence
+
+d3 $ slow 8 $ s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
+  # n (slow 2.8 "0 1 2")
+  # vowel "i"
+  # speed "0.8"
+  # shape "0.3" -- increase 0->0.3
+
+d3 $ slow 8 $ s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
+  # n (slow 2.8 "0 1 2")
+  # vowel "i"
+  # speed "0.8"
+  # shape (halfosc <$> saw1)
+
+d7 $ slow 2 $
+  s "arpy*8"
+  # n "4 2 7 2"
+  # gain "0.7"
+
+mapM_ ($ silence) [d2,d3]
+
+d7 $ slow 2 $
+  iter 9 $
+  s "arpy*8"
+  # n "4 2 7 2"
+  # gain "0.7"
+
+d1 $ slow 2 $
+  every 3 (0.125 <~) $
+  s "[[psr:8*4 psr:8*2] ! ! psr:8*8]/4"
+  # gain "0.6"
+
+d2 $ slow 2 . brak $
+  s "uxay*4"
+  # n "1 0 1 2"
+  # gain "0.8"
+  # speed "[0.7 1 1.2]/2"
+  # shape "0.4 0.3 0.6"
+
+d2 $ brak . iter 4 $
+  s "uxay*4"
+  # n "1 0 1 2"
+  # gain "0.8"
+  # speed "[0.7 1 1.2]/2"
+  # shape "0.4 0.3 0.6"
+
+d1 $ overlay (s "peri:1") $ slow 2 $
+  every 3 (0.125 <~) $
+  s "[[psr:8*4 psr:8*2] ! ! psr:8*8]/4"
+  # gain "0.6"
+
+mapM_ ($ silence) [d1,d2]
+
+{-
+[3]
+-}
+
+d7 $ slow 2 $
+  whenmod 7 4 (|+| vowel "a") $ -- this not used in brighton 2014 live rec.
+  iter 9 $
+  s "arpy*8"
+  # n "4 2 7 2"
+  # gain "0.7"
+
+d2 $ slow 2 $
+  slow 2 . spread slow [2,4,2,3] $
+  jux (0.25 <~) $
+  slow 2 $ s "[uxay tok*2] [~ uxay] [psr:8 uxay] ~"
+  # n (density 3 $ run 2)
+
+d1 $ slow 2 $ s "[tok*2 [rm tok]] [psr:14 tok*2]"
+
+d3 $ slow 2 $
+  sound (samples "bass*4" "0 1")
+  # begin "0.4"
+  # speed "1.2"
+  # shape "0.2"
+
+d1 $ slow 2 $
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+
+d3 $ slow 2 $
+  whenmod 7 6 (density 1.5) $
+  sound (samples "bass*4" "0 1")
+  # begin "0.4"
+  # speed "1.2"
+  # shape "0.2"
+
+d1 $ slow 2 $
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+
+d3 $ slow 2 $
+  spread slow [2,(7%4)] $
+  whenmod 7 6 (density 1.5) $
+  sound (samples "bass*4" "0 1")
+  # begin "0.4"
+  # speed "1.2"
+  # shape "0.2"
+
+d3 $ slow 2 $
+  spread slow [2,(7%4)] $
+  whenmod 7 6 (density 1.5) $
+  iter 4 $
+  sound (samples "bass*4" "0 1")
+  # begin "0.4"
+  # speed "1.2"
+  # shape "0.2"
+
+d9 $ slow 2 . whenmod 7 4 (density 1.5) $
+  s "[~ tacscan:13] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
+
+d7 $ slow 2 $
+  iter 9 $
+  s "arpy*8"
+  # n "4 2 7 2"
+  # gain "0.7"
+
+d3 silence
+
+d1 $ slow 2 $ stack [
+  slow 2 $ s "peri:1 [~ ~ ~ peri:1] [~ peri:1 peri:1 ~] ~",
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+  ]
+
+d9 silence
+
+d1 $ slow 2 $ stack [
+  slow 2 $ s "peri:1*2 [~ ~ ~ peri:1] [~ peri:1 peri:1 ~] ~",
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+  ]
+
+d2 $ brak . iter 4 $
+  s "uxay*4"
+  # n "1 0 1 2"
+  # gain "0.8"
+  # speed "[0.7 1 1.2]/2"
+  # shape "0.4 0.3 0.6"
+
+d3 $ slow 2 $
+  spread slow [2,(7%4)] $
+  whenmod 7 6 (density 1.5) $
+  iter 4 $
+  sound (samples "bass*4" "0 1")
+  # begin "0.4"
+  # speed "1.2"
+  # shape "0.2"
+
+d9 $ slow 2 . whenmod 7 4 (density 1.5) $
+  s "[~ tacscan:13] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
+
+d3 $ slow 2 $
+  spread slow [2,(7%4)] $
+  whenmod 7 6 (density 1.5) $
+  iter 4 $
+  sound (samples "{bass*4, wobble*3}" "0 1")
+  # begin "0.4"
+  # speed "1.2"
+  # shape "0.2"
+
+mapM_ ($ silence) [d2,d3,d9]
+
+d1 $ slow 2 $ stack [
+  slow 2 $ s "peri:1*2 [~ ~ ~ peri:1] [~ peri:1 peri:1 ~] ~",
+  whenmod 5 3 (density 2) $
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+  ]
+
+d1 $ slow 2 $ stack [
+  slow 2 $ s "peri:1*2 [~ ~ ~ peri:1] [~ peri:1 peri:1 ~] ~",
+  whenmod 5 3 (density 2) $
+  iter 2 $
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+  ]
+
+d1 $ slow 2 $ stack [
+  whenmod 8 7 rev $
+  slow 2 $ s "peri:1*2 [~ ~ ~ peri:1] [~ peri:1 peri:1 ~] ~",
+  whenmod 5 3 (density 2) $
+  iter 2 $
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+  ]
+
+d1 $ slow 2 $ stack [
+  every 3 rev $
+  whenmod 8 7 rev $
+  slow 2 $ s "peri:1*2 [~ ~ ~ peri:1] [~ peri:1 peri:1 ~] ~",
+  whenmod 5 3 (density 2) $
+  iter 2 $
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+  ]
+
+d1 $ slow 2 $ stack [
+  whenmod 5 3 (density 2) $
+  iter 2 $
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+  ]
+
+d2 $ slow 2 $
+  slow 2 . spread slow [2,4,2,3] $
+  jux (0.25 <~) $
+  slow 2 $ s "[uxay tok*2] [~ uxay] [psr:8 uxay] ~"
+  # n (density 3 $ run 2)
+
+d1 $ slow 2 $ stack [
+  slow 2 $ s "peri:1*2 [~ ~ ~ peri:1] [~ peri:1 peri:1 ~] ~",
+  s "[tok*2 [rm tok]] [psr:14 tok*2]"
+  # n (slow 3 $ run 4)
+  ]
+
+d2 $ brak . iter 4 $
+  s "uxay*4"
+  # n "1 0 1 2"
+  # gain "0.8"
+  # speed "[0.7 1 1.2]/2"
+  # shape "0.4 0.3 0.6"
+
+d3 $ slow 8 $ s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
+  # n (slow 2.8 "0 1 2")
+  # vowel "i"
+  # speed "0.8"
+  # shape (halfosc <$> saw1)
+
+d9 $ slow 2 . whenmod 7 4 (density 1.5) $
+  s "[~ tacscan:13] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
+
+d6 $ slow 4 $ striate 32 $
+  s "warbler"
+  # n (slow 7 $ run 7)
+  # gain "0.8"
+
+d7 $ slow 2 $
+  iter 9 $
+  s "arpy*8"
+  # n "4 2 7 2"
+  # gain "0.7"
+
+mapM_ ($ silence) [d2,d3,d9]
+d1 silence
+d7 silence
+hush
