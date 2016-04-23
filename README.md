@@ -15,6 +15,10 @@ This version updated April 2016 for Tidal 0.7 (jumping three whole major patches
 
 Older versions of this composition with original notes are available on the `original-notes` tag of this repository.
 
+### battery123-megalet.tidal
+
+Contains a big `let` directive to initialize all variables used in `battery123.tidal` (where they are recorded separately). Eval the whole block with `C-c C-e` and dive in.
+
 ## Sample attributions
 
 ```
