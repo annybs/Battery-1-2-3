@@ -1,11 +1,6 @@
-{-
-anny fm: battery 1,2,3 megalet
-see battery123.tidal for full composition
--}
-
-cps (125/60)
-
-let cf = slow 2
+-- megalet for battery123.tidal
+let msil = mapM_ ($ silence)
+    cf = slow 2
     every' n o f = when ((== (o-1)) . (`mod` n)) f
     halfosc = (/2).(+0.5)
     halfosc1 = (+1).(/2)
@@ -13,15 +8,15 @@ let cf = slow 2
     d'drum = d1
     d'perc = d2
     d'bass = d3
-    d'mosq = d4
-    d'tac = d9 -- tacscan
-    d'warb = d6 -- warbler
+    d'hand = d4
+    d'warb = d5 -- warbler
+    d'bass2 = d6 -- more bass right at the end
     d'arpy = d7
     d'tr = d8 -- trump
-    d'bass2 = d5 -- more bass right at the end
+    d'tac = d9 -- tacscan
     b1'bass = s "bass3 [~ bass3] ! ~"
               # begin "0.2"
-    b1'mosq = slow 8 $ rev . striate 256 $ s "hand*8"
+    b1'hand = slow 8 $ rev . striate 256 $ s "hand*8"
               # speed "0.7"
     b1'perc = slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
     b1'tac = s "[~ tacscan] ! ~ ~"
