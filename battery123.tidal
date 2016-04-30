@@ -160,6 +160,14 @@ d'drum silence
 let b2'uxp = (# gain "0.8") .
              (# speed "[0.7 1 1.2]/2")
 
+let b2'ux = cf $ s "uxay*4"
+            # n "1 0 1 2"
+
+let b2'ux2 i = (if i then brak . iter 4 else cf . brak) $
+               b2'uxp $ s "uxay*4"
+               # n "1 0 1 2"
+               # shape "0.4 0.3 0.6"
+
 let b2'psr = s "psr*4 psr*2"
              # gain "0.6"
     b2'psrf = s "[[psr*4 psr*2] ! ! psr*8]/4"
@@ -185,11 +193,9 @@ let b2'arpy = s "arpy*8"
 d'perc $ cf $ s "uxay*2"
   # n "1"
 
-d'perc $ cf $ s "uxay*4"
-  # n "1 0 1 2"
+d'perc $ b2'ux
 
-d'perc $ cf $ s "uxay*4"
-  # n "1 0 1 2"
+d'perc $ b2'ux
   # speed "[0.7 1 1.2]/2"
 
 d'drum $ cf $ b2'psr
@@ -200,10 +206,7 @@ d'drum $ overlay (s "peri") $
   cf $ every 3 (0.125 <~) $ b2'psrf
 
 -- this and next 3 parts real quick
-d'perc $ cf $ brak $
-  b2'uxp $ s "uxay*4"
-  # n "1 0 1 2"
-  # shape "0.4 0.3 0.6"
+d'perc $ b2'ux2 False
 
 d'warb silence
 
@@ -218,10 +221,7 @@ d'tr $ cf $ b2'trump "[~ trump ! !] ~"
 d'drum $ overlay (s "peri") $
   cf $ every 3 (0.125 <~) $ b2'psrf
 
-d'perc $ brak . iter 4 $
-  b2'uxp $ s "uxay*4"
-  # n "1 0 1 2"
-  # shape "0.4 0.3 0.6"
+d'perc $ b2'ux2 True
 
 d'tr $ cf $ b2'trump "trump*8"
   # speed (halfosc1 <$> slow 4 sinewave1)
@@ -245,15 +245,8 @@ d'arpy $ cf $ iter 9 $ b2'arpy
 d'drum $ -- overlay (s "peri") $
   cf $ every 3 (0.125 <~) $ b2'psrf
 
-d'perc $ cf $ brak $
-  b2'uxp $ s "uxay*4"
-  # n "1 0 1 2"
-  # shape "0.4 0.3 0.6"
-
-d'perc $ brak . iter 4 $
-  b2'uxp $ s "uxay*4"
-  # n "1 0 1 2"
-  # shape "0.4 0.3 0.6"
+d'perc $ b2'ux2 False
+d'perc $ b2'ux2 True
 
 d'drum $ overlay (s "peri") $
   cf $ every 3 (0.125 <~) $ b2'psrf
@@ -336,12 +329,9 @@ d'hand $ b1'hand
   # shape ((/2) <$> slow (10%4) sinewave1)
   # pan (halfosc <$> slow (8%3) sinewave1)
 
-d'perc $ brak . iter 4 $
-  s "uxay*4"
-  # n "1 0 1 2"
+d'perc $ b2'ux2 True
   # gain "0.8"
   # speed "[0.7 1 1.2]/2"
-  # shape "0.4 0.3 0.6"
 
 d'bass $ cf $
   spread slow [2,(7%4)] $
@@ -406,12 +396,9 @@ d'drum $ cf $
   overlay (b3'drumf) $
   (b3'perc # n (slow 3 $ run 4))
 
-d'perc $ brak . iter 4 $
-  s "uxay*4"
-  # n "1 0 1 2"
+d'perc $ b2'ux2 True
   # gain "0.8"
   # speed "[0.7 1 1.2]/2"
-  # shape "0.4 0.3 0.6"
 
 d'bass $ b2'bass
   # shape (halfosc <$> saw1)

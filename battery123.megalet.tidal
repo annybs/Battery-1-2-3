@@ -27,6 +27,12 @@ let msil = mapM_ ($ silence)
                  # gain "0.8"
     b2'uxp = (# gain "0.8") .
              (# speed "[0.7 1 1.2]/2")
+    b2'ux = cf $ s "uxay*4"
+            # n "1 0 1 2"
+    b2'ux2 i = (if i then brak . iter 4 else cf . brak) $
+               b2'uxp $ s "uxay*4"
+               # n "1 0 1 2"
+               # shape "0.4 0.3 0.6"
     b2'psr = s "psr*4 psr*2"
              # gain "0.6"
     b2'psrf = s "[[psr*4 psr*2] ! ! psr*8]/4"
