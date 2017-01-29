@@ -50,7 +50,7 @@ let msil = mapM_ ($ silence)
     b2'arpy = s "arpy*8"
               # n "2 1 3 1"
               # gain "0.7"
-    b3'perc = s "[tok*2 [rm tok]] [psr:1 tok*2]"
+    b3'perc = sound "[tok*2 [rm tok]] [psr:1 tok*2]"
     b3'bass = s "bass*4"
               # n "0 1"
               # begin "0.4"
