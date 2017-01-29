@@ -59,6 +59,7 @@ let b1'warbler = slow 4 $ striate 32 $ s "warbler"
                  # gain "0.8"
 
 -- go
+hush
 d'bass $ slow 4 $ b1'bass
 
 d'bass $ slow 4 $ b1'bass
@@ -96,29 +97,29 @@ d'bass $ cf $
   # speed (halfosc1 <$> slow 8 sinewave1)
   # gain "0.9"
 
-d'drum $ cf $ s "~ psr:1"
+d'drum $ cf $ sound "~ psr:1"
 
 d'drum $ cf $
-  overlay (s "~ psr:1") $
+  overlay (sound "~ psr:1") $
   slow 2 $ s "peri [~ peri] ! ~"
 
-d'drum $ cf $ s "~ psr:1"
+d'drum $ cf $ sound "~ psr:1"
 
 -- good drum
 d'drum $ cf $
-  overlay (s "~ psr:1") $
+  overlay (sound "~ psr:1") $
   every 4 (density 1.5) $ slow 2 $ s "peri [~ peri] ! ~"
 
-d'drum $ cf $ s "~ psr:1"
+d'drum $ cf $ sound "~ psr:1"
 
 -- bring a funk
 d'tac $ cf $ b1'tac
 d'tac $ cf . whenmod 7 4 (density 1.5) $ b1'tac
 
 d'drum $ overlay (s "peri") $ cf $
-  s "~ psr:1"
+  sound "~ psr:1"
 
-d'drum $ cf $ s "~ psr:1"
+d'drum $ cf $ sound "~ psr:1"
 
 -- birdsong. don't play it for too long. gets annoying
 d'warb $ b1'warbler
@@ -129,17 +130,17 @@ d'perc $ cf $
   # n (density 3 $ run 2)
 
 d'drum $ overlay (s "peri") $ cf $
-  s "~ psr:1"
+  sound "~ psr:1"
 
 d'drum $ overlay (s "peri") $ cf $
-  every 2 (density 3) $ s "~ psr:1"
+  every 2 (density 3) $ sound "~ psr:1"
 
 msil [d'bass, d'tac]
 
 -- drum + perc are real nice at this point
 d'drum $ overlay (s "peri") $ cf $
   every' 8 8 (density 1.5) $
-  every 2 (density 3) $ s "~ psr:1"
+  every 2 (density 3) $ sound "~ psr:1"
 
 d'perc $ cf $
   slow 2 . spread slow [2,4,2,3] $
@@ -223,6 +224,7 @@ d'drum $ overlay (s "peri") $
 
 d'perc $ b2'ux2 True
 
+-- optional, maybe not so great
 d'tr $ cf $ b2'trump "trump*8"
   # speed (halfosc1 <$> slow 4 sinewave1)
 
@@ -257,7 +259,7 @@ msil [d'drum, d'perc]
 [3]
 -}
 
-let b3'perc = s "[tok*2 [rm tok]] [psr:1 tok*2]"
+let b3'perc = sound "[tok*2 [rm tok]] [psr:1 tok*2]"
 
 let b3'bass = s "bass*4"
               # n "0 1"
@@ -396,6 +398,7 @@ d'drum $ cf $
   overlay (b3'drumf) $
   (b3'perc # n (slow 3 $ run 4))
 
+-- optional
 d'perc $ b2'ux2 True
   # gain "0.8"
   # speed "[0.7 1 1.2]/2"
