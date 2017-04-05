@@ -1,34 +1,19 @@
 {-
-anny fm: battery 1,2,3
-originally recorded live @ the loft, brighton, 4th july 2014
-  _____
- /    /
-/____/
-anny.audio/track/battery-123-live
-      __
-  c|||  o_
-c||||| ___o
-soundcloud.com/anny-fm/battery-123-live
+Anny FM: Battery 1,2,3
+anny.audio
+
+Originally recorded live @ The Loft, Brighton, 4th July 2014
+
+See README.md for more information
 -}
 
-cps (125/60)
 
--- multi-silence
-let msil = mapM_ ($ silence)
-
--- shortfix for bps->cps
-let cf = slow 2
-
--- alternative every
-let every' n o f = when ((== (o-1)) . (`mod` n)) f
-
--- osc patterns
-let halfosc = (/2).(+0.5)
-    halfosc1 = (+1).(/2)
-    thirdosc1 = (+1).(/3)
-
--- channel mapping
-let d'drum = d1
+let bpm b = cps (b/60)
+    msil = mapM_ ($ silence)
+    cf = slow 2
+    every' n o f = when ((== (o-1)) . (`mod` n)) f
+    halfosc = (/2).(+0.5)
+    d'drum = d1
     d'perc = d2
     d'bass = d3
     d'hand = d4
@@ -39,94 +24,101 @@ let d'drum = d1
     d'tac = d9 -- tacscan
 
 {-
-[1]
+@b1
+Anny FM: Battery 1
+anny.audio
 -}
 
-let b1'bass = s "bass3 [~ bass3] ! ~"
-              # begin "0.2"
+bpm 125
 
-let b1'hand = slow 8 $ rev . striate 256 $ s "hand*8"
-              # speed "0.7"
+d'bass $ slow 4 $ s "bass3 [~ bass3] ! ~"
+  # begin "0.2"
 
-let b1'perc = slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
-
-let b1'tac = s "[~ tacscan] ! ~ ~"
-             # gain "0.8"
-             # vowel (slow 3 "e u")
-
-let b1'warbler = slow 4 $ striate 32 $ s "warbler"
-                 # n (slow 7 $ run 7)
-                 # gain "0.8"
-
--- go
-hush
-d'bass $ slow 4 $ b1'bass
-
-d'bass $ slow 4 $ b1'bass
+d'bass $ slow 4 $ s "bass3 [~ bass3] ! ~"
+  # begin "0.2"
   # n "0 1 0 0"
 
-d'bass $ slow 4 $ b1'bass
+-- @b1bass1
+d'bass $ slow 4 $ s "bass3 [~ bass3] ! ~"
+  # begin "0.2"
   # n "0 1 0 0"
-  # speed (thirdosc1 <$> slow 8 sinewave1)
+  # speed (scale 1 (4/3) $ slow 8 sinewave1)
 
-d'hand $ b1'hand
+d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
+  # speed "0.7"
 
-d'hand $ b1'hand
-  # shape ((/2) <$> slow (10%4) sinewave1)
+d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
+  # speed "0.7"
+  # shape (scale 0 0.5 $ slow (10%4) sinewave1)
 
--- nice drum
-d'perc $ cf $ b1'perc
+d'perc $ cf $ slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
 
-d'hand $ b1'hand
-  # shape ((/2) <$> slow (10%4) sinewave1)
-  # pan (halfosc <$> slow (8%3) sinewave1)
+-- @b1hand
+d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
+  # speed "0.7"
+  # shape (scale 0 0.5 $ slow (10%4) sinewave1)
+  # pan (scale 0.25 0.75 $ slow (8%3) sinewave1)
 
-d'perc $ cf $ b1'perc
+d'perc $ cf $ slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
   # n (density 3 $ run 2)
 
+-- @b1perc1
 d'perc $ cf $
-  jux (0.25 <~) $ b1'perc
+  jux (0.25 <~) $
+  slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
   # n (density 3 $ run 2)
 
--- good bass
+-- @b1bass2
 d'bass $ cf $
   spread slow [1,3] $
   striate 16 $
-  b1'bass
+  s "bass3 [~ bass3] ! ~"
+  # begin "0.2"
   # n "0 1 0 0"
-  # speed (halfosc1 <$> slow 8 sinewave1)
+  # speed (scale 1 1.5 $ slow 8 sinewave1)
   # gain "0.9"
 
 d'drum $ cf $ sound "~ psr:1"
 
+-- @b1drum1
 d'drum $ cf $
   overlay (sound "~ psr:1") $
   slow 2 $ s "peri [~ peri] ! ~"
 
 d'drum $ cf $ sound "~ psr:1"
 
--- good drum
+-- @b1drum2
 d'drum $ cf $
   overlay (sound "~ psr:1") $
   every 4 (density 1.5) $ slow 2 $ s "peri [~ peri] ! ~"
 
 d'drum $ cf $ sound "~ psr:1"
 
--- bring a funk
-d'tac $ cf $ b1'tac
-d'tac $ cf . whenmod 7 4 (density 1.5) $ b1'tac
+d'tac $ cf $ s "[~ tacscan] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
+
+-- @b1tac
+d'tac $ cf . whenmod 7 4 (density 1.5) $ -- (1)
+  s "[~ tacscan] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
 
 d'drum $ overlay (s "peri") $ cf $
   sound "~ psr:1"
 
 d'drum $ cf $ sound "~ psr:1"
 
--- birdsong. don't play it for too long. gets annoying
-d'warb $ b1'warbler
+-- @b1warbler
+d'warb $ slow 4 $ striate 32 $ s "warbler"
+  # n (slow 7 $ run 7)
+  # gain "0.8"
 
+-- @b1perc2
 d'perc $ cf $
-  spread slow [2,1] $
-  jux (0.25 <~) $ b1'perc
+  spread slow [2, 1] $
+  jux (0.25 <~) $
+  slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
   # n (density 3 $ run 2)
 
 d'drum $ overlay (s "peri") $ cf $
@@ -137,25 +129,28 @@ d'drum $ overlay (s "peri") $ cf $
 
 msil [d'bass, d'tac]
 
--- drum + perc are real nice at this point
+-- @b1drum3
 d'drum $ overlay (s "peri") $ cf $
   every' 8 8 (density 1.5) $
   every 2 (density 3) $ sound "~ psr:1"
 
+-- @b1perc3
 d'perc $ cf $
-  slow 2 . spread slow [2,4,2,3] $
-  jux (0.25 <~) $ b1'perc
+  slow 2 . spread slow [2, 4, 2, 3] $
+  jux (0.25 <~) $
+  slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
   # n (density 3 $ run 2)
 
 d'hand silence
 
-d'drum $ cf $
-  every' 8 8 (density 1.5) $ every 2 (density 3) $ s "~ psr:1"
+d'drum $ cf $ every' 8 8 (density 1.5) $ every 2 (density 3) $ sound "~ psr:1"
 
 d'drum silence
 
 {-
-[2]
+@b2
+Anny FM: Battery 2
+anny.audio
 -}
 
 let b2'uxp = (# gain "0.8") .
@@ -174,13 +169,6 @@ let b2'psr = s "psr*4 psr*2"
     b2'psrf = s "[[psr*4 psr*2] ! ! psr*8]/4"
               # gain "0.6"
 
-let b2'trump p = whenmod 5 4 rev $ s p
-                 # n (slow 3.2 $ run 4)
-                 # gain "0.8"
-                 # speed (halfosc1 <$> slow 4 sinewave1)
-                 # vowel (slow 3.2 "a e o")
-                 # shape "0.6"
-
 let b2'bass = slow 8 $ s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
               # n (slow 2.8 "0 1 2")
               # vowel "i"
@@ -190,73 +178,87 @@ let b2'arpy = s "arpy*8"
               # n "2 1 3 1"
               # gain "0.7"
 
--- go
-d'perc $ cf $ s "uxay*2"
-  # n "1"
+bpm 125
 
-d'perc $ b2'ux
+d'perc $ cf $ s "uxay*2" # n "1 0 1 2"
+d'perc $ cf $ s "uxay*4" # n "1 0 1 2"
 
-d'perc $ b2'ux
+d'perc $ cf $ s "uxay*4"
+  # n "1 0 1 2"
   # speed "[0.7 1 1.2]/2"
 
-d'drum $ cf $ b2'psr
-d'drum $ cf $ b2'psrf
-d'drum $ cf $ every 3 (0.125 <~) $ b2'psrf
+d'drum $ cf $ s "psr*4 psr*2"
+  # gain "0.6"
 
-d'drum $ overlay (s "peri") $
-  cf $ every 3 (0.125 <~) $ b2'psrf
+-- @b2drum
+d'drum $ -- overlay (s "peri") $ -- (2,3) toggle
+  cf $
+  -- every 3 (0.125 <~) $ -- (1)
+  s "[[psr*4 psr*2] ! ! psr*8]/4"
+  # gain "0.6"
 
--- this and next 3 parts real quick
-d'perc $ b2'ux2 False
+-- @b2perc
+let -- b = brak . iter 4 -- (1)
+    b = cf . brak
+  in d'perc $ b $ s "uxay*4"
+     # n "1 0 1 2"
+     # gain "0.8"
+     # shape "0.4 0.3 0.6"
+     # speed "[0.7 1 1.2]/2"
 
 d'warb silence
 
-d'drum $ cf $ -- overlay (s "peri") $
-  every 3 (0.125 <~) $ b2'psrf
+-- ~b2drum w/o peri
 
-d'tr $ cf $ b2'trump "[~ trump ! !] ~"
+-- @b2trump
+d'tr $ cf $ whenmod 5 4 rev $ s "[~ trump ! !] ~"
+  # n (slow 3.2 $ run 4)
+  # gain "0.8"
+  # vowel (slow 3.2 "a e o")
+  # shape "0.6"
+  -- # speed (scale 0.5 1.5 $ slow 4 sinewave1) -- (1)
 
-d'tr $ cf $ b2'trump "[~ trump ! !] ~"
-  # speed (halfosc1 <$> slow 4 sinewave1)
+-- ~b2drum w/ peri
+-- ~b2perc w/ b=brak . iter 4
 
-d'drum $ overlay (s "peri") $
-  cf $ every 3 (0.125 <~) $ b2'psrf
+d'bass $ slow 8 $
+  s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
+  # n (slow 2.8 "0 1 2")
+  # vowel "i"
+  # speed "0.8"
 
-d'perc $ b2'ux2 True
-
--- optional, maybe not so great
-d'tr $ cf $ b2'trump "trump*8"
-  # speed (halfosc1 <$> slow 4 sinewave1)
-
--- quickly
-d'bass $ b2'bass
 d'tr silence
 
-d'bass $ b2'bass
-  # shape "0.3" -- increase 0->0.3
+-- @b2bass
+d'bass $ slow 8 $
+  s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
+  # n (slow 2.8 "0 1 2")
+  # vowel "i"
+  # speed "0.8"
+  # shape "0.3" -- (1) increase 0->0.3
+  -- # shape (scale 0.25 0.75 $ saw1) -- (2) replaces (1)
 
-d'bass $ b2'bass
-  # shape (halfosc <$> saw1)
-
-d'arpy $ cf $ b2'arpy
+d'arpy $ cf $ s "arpy*8"
+  # n "2 1 3 1"
+  # gain "0.7"
 
 msil [d'perc, d'bass]
 
-d'arpy $ cf $ iter 9 $ b2'arpy
+-- ~b2drum w/o peri
 
-d'drum $ -- overlay (s "peri") $
-  cf $ every 3 (0.125 <~) $ b2'psrf
+d'arpy $ cf $ iter 9 $ s "arpy*8"
+  # n "2 1 3 1"
+  # gain "0.7"
 
-d'perc $ b2'ux2 False
-d'perc $ b2'ux2 True
-
-d'drum $ overlay (s "peri") $
-  cf $ every 3 (0.125 <~) $ b2'psrf
+-- ~b2perc @ (1)
+-- ~b2drum w/ peri
 
 msil [d'drum, d'perc]
 
 {-
-[3]
+@b3
+Anny FM: Battery 3
+anny.audio
 -}
 
 let b3'perc = sound "[tok*2 [rm tok]] [psr:1 tok*2]"
@@ -275,46 +277,54 @@ let b3'bass = s "bass*4"
 let b3'drum = slow 2 $ s "peri [~ ~ ~ peri] [~ peri peri ~] ~"
     b3'drumf = slow 2 $ s "peri*2 [~ ~ ~ peri] [~ peri peri ~] ~"
 
--- go
+-- @b3arpy
 d'arpy $ cf $
-  whenmod 7 4 (|+| vowel "a") $ -- this not used in brighton 2014 live rec.
-  iter 9 $ b2'arpy
+  whenmod 7 4 (# vowel "a") $ -- (1) remove
+  iter 9 $ s "arpy*8"
+  # n "2 1 3 1"
+  # gain "0.7"
 
+-- ~b1perc3
 d'perc $ cf $
-  slow 2 . spread slow [2,4,2,3] $
-  jux (0.25 <~) $ b1'perc
+  slow 2 . spread slow [2, 4, 2, 3] $
+  jux (0.25 <~) $
+  slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
   # n (density 3 $ run 2)
 
-d'drum $ cf $ b3'perc
-d'bass $ cf $ b3'bass
+d'drum $ cf $ sound "[tok*2 [rm tok]] [psr:1 tok*2]"
 
+-- @b3bass
 d'bass $ cf $
-  whenmod 7 6 (density 1.5) $
-  b3'bass
+  -- spread slow [2,(7%4)] $ -- (2)
+  -- whenmod 7 6 (density 1.5) $ -- (1)
+  -- iter 4 $ -- (3)
+  s "bass*4"
+  # n "0 1"
+  # begin "0.4"
+  # speed "1.2"
+  # shape "0.2"
 
-d'drum $ cf $ b3'perc
+-- ~b3bass @ (1)
+
+d'drum $ cf $ sound "[tok*2 [rm tok]] [psr:1 tok*2]"
   # n (slow 3 $ run 4)
 
-d'bass $ cf $
-  spread slow [2,(7%4)] $
-  whenmod 7 6 (density 1.5) $
-  b3'bass
+-- ~b3bass @ (2)
+-- ~b3bass @ (3)
 
-d'bass $ cf $
-  spread slow [2,(7%4)] $
-  whenmod 7 6 (density 1.5) $
-  iter 4 $
-  b3'bass
+-- ~b1hand
+d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
+  # speed "0.7"
+  # shape (scale 0 0.5 $ slow (10%4) sinewave1)
+  # pan (scale 0.25 0.75 $ slow (8%3) sinewave1)
 
-d'tac $ cf . whenmod 7 4 (density 1.5) $ b1'tac
+d'tac $ cf . whenmod 7 4 (density 1.5) $
+  s "[~ tacscan] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
 
-d'hand $ b1'hand
-  # shape ((/2) <$> slow (10%4) sinewave1)
-  # pan (halfosc <$> slow (8%3) sinewave1)
+-- ~b3arpy @ (1)
 
-d'arpy $ cf $ iter 9 $ b2'arpy
-
--- quickly
 msil [d'bass, d'hand]
 
 d'drum $ cf $
@@ -327,7 +337,8 @@ d'drum $ cf $
   overlay (b3'drumf) $
   (b3'perc # n (slow 3 $ run 4))
 
-d'hand $ b1'hand
+d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
+  # speed "0.7"
   # shape ((/2) <$> slow (10%4) sinewave1)
   # pan (halfosc <$> slow (8%3) sinewave1)
 
@@ -341,7 +352,10 @@ d'bass $ cf $
   iter 4 $
   b3'bass
 
-d'tac $ cf . whenmod 7 4 (density 1.5) $ b1'tac
+d'tac $ cf . whenmod 7 4 (density 1.5) $
+  s "[~ tacscan] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
 
 d'bass $ cf $
   spread slow [2,(7%4)] $
@@ -390,7 +404,8 @@ d'hand silence
 
 d'perc $ cf $
   slow 2 . spread slow [2,4,2,3] $
-  jux (0.25 <~) $ b1'perc
+  jux (0.25 <~) $
+  slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
   # n (density 3 $ run 2)
 
 -- rebuild yr way out
@@ -406,16 +421,25 @@ d'perc $ b2'ux2 True
 d'bass $ b2'bass
   # shape (halfosc <$> saw1)
 
-d'tac $ cf . whenmod 7 4 (density 1.5) $ b1'tac
+d'tac $ cf . whenmod 7 4 (density 1.5) $
+  s "[~ tacscan] ! ~ ~"
+  # gain "0.8"
+  # vowel (slow 3 "e u")
 
-d'bass2 $ slow 4 $ b1'bass
+-- ~b1bass1
+d'bass2 $ slow 4 $ s "bass3 [~ bass3] ! ~"
+  # begin "0.2"
   # n "0 1 0 0"
-  # speed (thirdosc1 <$> slow 8 sinewave1)
+  # speed (scale 1 (4/3) <$> slow 8 sinewave1)
 
 d'arpy $ cf $ iter 9 $ b2'arpy
-d'warb $ b1'warbler
 
-d'hand $ b1'hand
+d'warb $ slow 4 $ striate 32 $ s "warbler"
+  # n (slow 7 $ run 7)
+  # gain "0.8"
+
+d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
+  # speed "0.7"
   # shape ((/2) <$> slow (10%4) sinewave1)
   # pan (halfosc <$> slow (8%3) sinewave1)
 
