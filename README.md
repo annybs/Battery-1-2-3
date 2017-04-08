@@ -16,6 +16,5 @@ Originally performed live @ The Loft, Brighton, 4th July 2014.
 
 ## License
 
-Recordings are CC-BY-SA Aneurin "Anny" Barker Snook 2015.
-
-Source code is [CC-BY-SA](https://creativecommons.org/licenses/by-sa/4.0/). Refer to sample attributions for sample licensing information, though they should all be royalty-free.
+- Source code: [CC-BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
+- Samples: see origins of sample attributions for individual licenses
