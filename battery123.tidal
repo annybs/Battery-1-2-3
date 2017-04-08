@@ -2,12 +2,12 @@
 Anny FM: Battery 1,2,3
 anny.audio
 
-See README.md for more information
-
-~ Version info ~
 Current version: 1.0
 Compatibility:  Tidal Cycles 1.0-dev + SuperDirt 1.0-dev + SuperCollider 3.8
 Updated: 8 April 2017
+License: CC-BY-SA https://creativecommons.org/licenses/by-sa/4.0/
+
+See README.md for more information
 -}
 
 let bpm b = cps (b/60)
@@ -222,6 +222,7 @@ msil [d'perc, d'bass]
 
 -- ~b2drum w/o peri
 
+-- @b2arpy
 d'arpy $ cf $ iter 9 $ s "arpy*8"
   # n "2 1 3 1"
   # gain 0.7
@@ -304,36 +305,13 @@ d'drum $ cf $
   sound "[tok*2 [rm tok]] [psr:1 tok*2]"
   # n (slow 3 $ run 4)
 
-d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
-  # speed "0.7"
-  # shape ((/2) <$> slow (10/4) sine1)
-  # pan (scale 0.25 0.75 <$> slow (8/3) sine1)
-
--- ~b1perc3
-let b = brak . iter 4
-  in d'perc $ b $ s "uxay*4"
-     # n "1 0 1 2"
-     # gain 0.8
-     # shape "0.4 0.3 0.6"
-     # speed "[0.7 1 1.2]/2"
+-- ~b1hand
+-- ~b1perc3 @ (1)
 
 -- ~b3bass
-d'bass $ cf $
-  spread slow [2,(7/4)] $
-  whenmod 7 6 (density 1.5) $
-  iter 4 $
-  s "bass*4"
-  # n "0 1"
-  # begin 0.4
-  # speed 1.2
-  # shape 0.2
-
 -- ~b1tac
-d'tac $ cf . whenmod 7 4 (density 1.5) $
-  s "[~ tacscan] ! ~ ~"
-  # gain 0.8
-  # vowel (slow 3 "e u")
 
+-- @b3bassloud
 d'bass $ cf $
   spread slow [2,(7/4)] $
   whenmod 7 6 (density 1.5) $
@@ -375,50 +353,13 @@ d'drum $ cf $
   sound "[tok*2 [rm tok]] [psr:1 tok*2]"
   # n (slow 3 $ run 4)
 
--- ~b2perc
-let b = brak . iter 4 -- (1)
-  in d'perc $ b $ s "uxay*4"
-     # n "1 0 1 2"
-     # gain 0.8
-     # shape "0.4 0.3 0.6"
-     # speed "[0.7 1 1.2]/2"
-
--- ~b2bass
-d'bass $ slow 8 $
-  s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
-  # n (slow 2.8 "0 1 2")
-  # vowel "i"
-  # speed 0.8
-  # shape (scale 0.25 0.75 $ saw1) -- (2) replaces (1)
-
+-- ~b2perc @ (1)
+-- ~b2bass @ (2)
 -- ~b1tac
-d'tac $ cf . whenmod 7 4 (density 1.5) $
-  s "[~ tacscan] ! ~ ~"
-  # gain "0.8"
-  # vowel (slow 3 "e u")
-
--- ~b1bass1
-d'bass2 $ slow 4 $ s "bass3 [~ bass3] ! ~"
-  # begin "0.2"
-  # n "0 1 0 0"
-  # speed (scale 1 (4/3) $ slow 8 sine1)
-
--- ~b3arpy
-d'arpy $ cf $
-  iter 9 $ s "arpy*8"
-  # n "2 1 3 1"
-  # gain 0.7
-
+-- ~b1bass1 [on channel d'bass2]
+-- ~b3arpy @ (1)
 -- ~b1warbler
-d'warb $ slow 4 $ striate 32 $ s "warbler"
-  # n (slow 7 $ run 7)
-  # gain "0.8"
-
 -- ~b1hand
-d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
-  # speed 0.7
-  # shape (scale 0 0.5 $ slow (10/4) sine1)
-  # pan (scale 0.25 0.75 $ slow (8/3) sine1)
 
 msil [d'perc, d'bass, d'tac, d'bass2, d'hand]
 d'drum silence
