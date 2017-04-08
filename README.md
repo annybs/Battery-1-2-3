@@ -4,7 +4,7 @@
 
 Originally performed live @ The Loft, Brighton, 4th July 2014.
 
-- [Listen to Battery 1,2,3 on Bandcamp](https://annyfm.bandcamp.com/album/battery-123-live-at-the-loft)
+[Listen to Battery 1,2,3 on Bandcamp](https://annyfm.bandcamp.com/album/battery-123-live-at-the-loft)
 
 ## Files
 
