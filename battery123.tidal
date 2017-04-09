@@ -3,8 +3,7 @@ Anny FM: Battery 1,2,3
 anny.audio
 
 Current version: 1.0
-Compatibility:  Tidal Cycles 1.0-dev + SuperDirt 1.0-dev + SuperCollider 3.8
-Updated: 8 April 2017
+Compatibility: Tidal Cycles 1.0-dev + SuperDirt 1.0-dev + SuperCollider 3.8
 License: CC-BY-SA https://creativecommons.org/licenses/by-sa/4.0/
 
 See README.md for more information
@@ -74,10 +73,10 @@ d'bass $
   spread slow [1,3] $
   striate 16 $
   s "bass3 [~ bass3] ! ~"
-  # begin "0.2"
+  # begin 0.2
   # n "0 1 0 0"
   # speed (scale 1 1.5 $ slow 8 sine1)
-  # gain "0.9"
+  # gain 0.9
 
 d'drum $ cf $ sound "~ psr:1"
 
@@ -95,12 +94,9 @@ d'drum $ cf $
 
 d'drum $ cf $ sound "~ psr:1"
 
-d'tac $ cf $ s "[~ tacscan] ! ~ ~"
-  # gain 0.8
-  # vowel (slow 3 "e u")
-
 -- @b1tac
-d'tac $ cf . whenmod 7 4 (density 1.5) $ -- (1)
+d'tac $ cf $
+  -- whenmod 7 4 (density 1.5) $ -- (1)
   s "[~ tacscan] ! ~ ~"
   # gain 0.8
   # vowel (slow 3 "e u")
@@ -174,8 +170,8 @@ d'drum $ overlay (s "peri") $ -- (2,3) toggle
   # gain 0.6
 
 -- @b2perc
-let -- b = brak . iter 4 -- (1)
-    b = cf . brak
+let b = brak . iter 4 -- (1)
+    -- b = cf . brak
   in d'perc $ b $ s "uxay*4"
      # n "1 0 1 2"
      # gain 0.8
@@ -284,7 +280,7 @@ d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
 -- ~b1tac
 d'tac $ cf . whenmod 7 4 (density 1.5) $
   s "[~ tacscan] ! ~ ~"
-  # gain "0.8"
+  # gain 0.8
   # vowel (slow 3 "e u")
 
 -- ~b3arpy @ (1)
@@ -326,11 +322,11 @@ msil [d'perc, d'tac]
 
 -- @b3drumfull
 d'drum $ cf $
-  every 3 rev $ -- (4) and (5) remove
-  every' 8 8 rev $ -- (3)
+  -- every 3 rev $ -- (4) and (5) remove
+  -- every' 8 8 rev $ -- (3)
   overlay (slow 2 $ s "peri*2 [~ ~ ~ peri] [~ peri peri ~] ~") $ -- (5) remove
-  whenmod 5 3 (density 2) $ -- (1)
-  iter 2 $ -- (2)
+  -- whenmod 5 3 (density 2) $ -- (1)
+  -- iter 2 $ -- (2)
   sound "[tok*2 [rm tok]] [psr:1 tok*2]"
   # n (slow 3 $ run 4)
 
