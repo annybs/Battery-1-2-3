@@ -1,6 +1,6 @@
 /*
-Anny: Piston LP
-anny.audio | pistonlp.co.uk
+Anny FM: Battery 1,2,3
+anny.audio
 
 See README.md for more information
 */
