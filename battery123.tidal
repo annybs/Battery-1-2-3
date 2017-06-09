@@ -256,10 +256,6 @@ let p = "bass*4" -- "{bass*4, wobble*3}" (4)
 -- b3bass @ 3
 
 -- b1hand @ 3
-d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
-  # speed 0.7
-  # shape (scale 0 0.5 $ slow (10/4) sine1)
-  # pan (scale 0.25 0.75 $ slow (8/3) sine1)
 
 -- b1tac @ 1
 -- b2arpy @ 1
