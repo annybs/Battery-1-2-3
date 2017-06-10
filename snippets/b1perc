@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: b1perc
+# group: battery123
+# key: b1perc
+# expand-env: (yas-indent-line 'fixed)
+# --
+-- @b1perc
+d'perc $ cf $
+  -- fastspread slow [2,1] $ -- (3)
+  -- slow 2 . fastspread slow [2,4,2,3] $ -- (4) replace (3)
+  -- jux (0.25 <~) $ -- (2)
+  slow 2 $ s "uxay [~ uxay] [psr uxay] ~"
+  -- # n (density 3 $ run 2) -- (1)

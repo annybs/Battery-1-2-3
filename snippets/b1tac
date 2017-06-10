@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: b1tac
+# group: battery123
+# key: b1tac
+# expand-env: (yas-indent-line 'fixed)
+# --
+-- @b1tac
+d'tac $ cf $
+  -- whenmod 7 4 (density 1.5) $ -- (1)
+  s "[~ tacscan] ! ~ ~"
+  # gain 0.8
+  # vowel (slow 3 "e u")

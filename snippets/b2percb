@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: b2percb
+# group: battery123
+# key: b2percb
+# expand-env: (yas-indent-line 'fixed)
+# --
+-- @b2percb
+let -- b = brak . iter 4 -- (1)
+    b = cf . brak
+  in d'perc $ b $ s "uxay*4"
+     # n "1 0 1 2"
+     # gain 0.8
+     # shape "0.4 0.3 0.6"
+     # speed "[0.7 1 1.2]/2"

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: b2perca
+# group: battery123
+# key: b2perca
+# expand-env: (yas-indent-line 'fixed)
+# --
+-- @b2perca
+d'perc $ cf $ s "uxay*2" -- (1) uxay*4
+  # n "1 0 1 2"
+  -- # speed "[0.7 1 1.2]/2" -- (2)

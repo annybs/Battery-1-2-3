@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: b2bass
+# group: battery123
+# key: b2bass
+# expand-env: (yas-indent-line 'fixed)
+# --
+-- @b2bass
+d'bass $ slow 8 $
+  s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
+  # n (slow 2.8 "0 1 2")
+  # vowel "i"
+  # speed 0.8
+  -- # shape 0.3 -- (1) increase 0->0.3
+  -- # shape (scale 0.25 0.75 $ saw1) -- (2) replaces (1)

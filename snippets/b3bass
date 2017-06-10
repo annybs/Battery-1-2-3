@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# name: b3bass
+# group: battery123
+# key: b3bass
+# expand-env: (yas-indent-line 'fixed)
+# --
+-- @b3bass
+let p = "bass*4" -- "{bass*4, wobble*3}" (4)
+  in d'bass $ cf $
+     -- spread slow [2,(7/4)] $ -- (2)
+     -- whenmod 7 6 (density 1.5) $ -- (1)
+     -- iter 4 $ -- (3)
+     s p
+     # n "0 1"
+     # begin 0.4
+     # speed 1.2
+     # shape 0.2

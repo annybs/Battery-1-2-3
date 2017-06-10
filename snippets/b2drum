@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: b2drum
+# group: battery123
+# key: b2drum
+# expand-env: (yas-indent-line 'fixed)
+# --
+-- @b2drum
+d'drum $ -- overlay (s "peri") $ -- (3,4) toggle
+  cf $
+  -- every 3 (0.125 <~) $ -- (2)
+  s "psr*4 psr*2"
+  -- s "[[psr*4 psr*2] ! ! psr*8]/4" -- (1)
+  # gain 0.6

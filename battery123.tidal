@@ -2,7 +2,7 @@
 Anny FM: Battery 1,2,3
 anny.audio
 
-Current version: 1.0
+Current version: 1.1.0
 Compatibility: Tidal Cycles 1.0-dev + SuperDirt 1.0-dev + SuperCollider 3.8
 License: CC-BY-SA https://creativecommons.org/licenses/by-sa/4.0/
 
@@ -129,11 +129,13 @@ Battery 2
 
 bpm 125
 
-d'perc $ cf $ s "uxay*2" # n "1 0 1 2"
-
-d'perc $ cf $ s "uxay*4"
+-- @b2perca
+d'perc $ cf $ s "uxay*2" -- (1) uxay*4
   # n "1 0 1 2"
-  -- # speed "[0.7 1 1.2]/2" -- (1)
+  -- # speed "[0.7 1 1.2]/2" -- (2)
+
+-- b2perca @ 1
+-- b2perca @ 2
 
 -- @b2drum
 d'drum $ -- overlay (s "peri") $ -- (3,4) toggle
@@ -145,7 +147,7 @@ d'drum $ -- overlay (s "peri") $ -- (3,4) toggle
 
 -- b2drum @ 1
 
--- @b2perc
+-- @b2percb
 let -- b = brak . iter 4 -- (1)
     b = cf . brak
   in d'perc $ b $ s "uxay*4"
@@ -167,7 +169,7 @@ d'tr $ cf $ whenmod 5 4 rev $ s "[~ trump ! !] ~"
   -- # speed (scale 0.5 1.5 $ slow 4 sine1) -- (1)
 
 -- b2drum w/ peri
--- b2perc @ 1
+-- b2percb @ 1
 
 -- @b2bass
 d'bass $ slow 8 $
@@ -197,7 +199,7 @@ msil [d'perc, d'bass]
 
 -- b2arpy @ 1
 
--- b2perc @ 1
+-- b2percb @ 1
 -- b2drum w/ peri
 
 msil [d'drum, d'perc]
@@ -218,18 +220,6 @@ d'drum $ cf $
   -- every' 8 8 rev $ -- (f3)
   stack [
     -- slow 2 $ s "peri*2 [~ ~ ~ peri] [~ peri peri ~] ~", -- (2), (3) ^peri*2 -- (f5) remove
-    -- whenmod 5 3 (density 2) $ -- (f1)
-    -- iter 2 $ -- (f2)
-    sound "[tok*2 [rm tok]] [psr:1 tok*2]"
-    -- # n (slow 3 $ run 4) -- (1)
-    ]
-
--- @b3drum
-d'drum $ cf $
-  -- every 3 rev $ -- (f4) and (f5) remove
-  -- every' 8 8 rev $ -- (f3)
-  stack [
-    -- slow 2 $ s "peri [~ ~ ~ peri] [~ peri peri ~] ~", -- (2), (3) ^peri*2 -- (f5) remove
     -- whenmod 5 3 (density 2) $ -- (f1)
     -- iter 2 $ -- (f2)
     sound "[tok*2 [rm tok]] [psr:1 tok*2]"
@@ -285,7 +275,7 @@ msil [d'bass, d'arpy]
 -- b1perc @ 4
 -- b3drum @ 3
 
--- b2perc @ 1
+-- b2percb @ 1
 -- b2bass @ 2
 -- b1tac
 -- b1bass1 [on channel d'bass2]

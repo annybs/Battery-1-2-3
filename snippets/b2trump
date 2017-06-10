@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: b2trump
+# group: battery123
+# key: b2trump
+# expand-env: (yas-indent-line 'fixed)
+# --
+-- @b2trump
+d'tr $ cf $ whenmod 5 4 rev $ s "[~ trump ! !] ~"
+  # n (slow 3.2 $ run 4)
+  # gain 0.8
+  # vowel (slow 3.2 "a e o")
+  # shape 0.6
+  -- # speed (scale 0.5 1.5 $ slow 4 sine1) -- (1)
