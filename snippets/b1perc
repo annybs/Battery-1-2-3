@@ -2,7 +2,7 @@
 # name: b1perc
 # group: battery123
 # key: b1perc
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b1perc
 d'perc $ cf $

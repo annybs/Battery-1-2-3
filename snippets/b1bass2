@@ -2,7 +2,7 @@
 # name: b1bass2
 # group: battery123
 # key: b1bass2
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b1bass2
 d'bass $

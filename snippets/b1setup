@@ -2,7 +2,7 @@
 # name: b1setup
 # group: battery123
 # key: b1setup
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 let bpm b = cps (b/60)
     msil = mapM_ ($ silence)

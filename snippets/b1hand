@@ -2,7 +2,7 @@
 # name: b1hand
 # group: battery123
 # key: b1hand
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b1hand
 d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"

@@ -2,7 +2,7 @@
 # name: b1warbler
 # group: battery123
 # key: b1warbler
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b1warbler
 d'warb $ slow 4 $ striate 32 $ s "warbler"

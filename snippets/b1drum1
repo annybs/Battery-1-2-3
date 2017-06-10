@@ -2,7 +2,7 @@
 # name: b1drum1
 # group: battery123
 # key: b1drum1
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b1drum1
 d'drum $ cf $ stack [

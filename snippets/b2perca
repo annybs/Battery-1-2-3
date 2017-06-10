@@ -2,7 +2,7 @@
 # name: b2perca
 # group: battery123
 # key: b2perca
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b2perca
 d'perc $ cf $ s "uxay*2" -- (1) uxay*4

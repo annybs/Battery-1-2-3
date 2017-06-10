@@ -2,7 +2,7 @@
 # name: b2trump
 # group: battery123
 # key: b2trump
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b2trump
 d'tr $ cf $ whenmod 5 4 rev $ s "[~ trump ! !] ~"

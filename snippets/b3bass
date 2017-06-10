@@ -2,7 +2,7 @@
 # name: b3bass
 # group: battery123
 # key: b3bass
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b3bass
 let p = "bass*4" -- "{bass*4, wobble*3}" (4)

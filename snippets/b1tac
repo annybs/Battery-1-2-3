@@ -2,7 +2,7 @@
 # name: b1tac
 # group: battery123
 # key: b1tac
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b1tac
 d'tac $ cf $

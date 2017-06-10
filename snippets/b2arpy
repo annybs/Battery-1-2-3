@@ -2,7 +2,7 @@
 # name: b2arpy
 # group: battery123
 # key: b2arpy
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b2arpy
 d'arpy $ cf $

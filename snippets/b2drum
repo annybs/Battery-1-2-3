@@ -2,7 +2,7 @@
 # name: b2drum
 # group: battery123
 # key: b2drum
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b2drum
 d'drum $ -- overlay (s "peri") $ -- (3,4) toggle

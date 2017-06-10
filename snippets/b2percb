@@ -2,7 +2,7 @@
 # name: b2percb
 # group: battery123
 # key: b2percb
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b2percb
 let -- b = brak . iter 4 -- (1)

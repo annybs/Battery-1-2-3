@@ -2,7 +2,7 @@
 # name: b3drum
 # group: battery123
 # key: b3drum
-# expand-env: (yas-indent-line 'fixed)
+# expand-env: (yas-indent-line fixed)
 # --
 -- @b3drum
 d'drum $ cf $
