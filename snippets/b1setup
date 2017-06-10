@@ -7,7 +7,7 @@
 let bpm b = cps (b/60)
     msil = mapM_ ($ silence)
     cf = slow 2
-    every' n o f = when ((== (o-1)) . (`mod` n)) f
+    every' n o f = when ((== (o-1)) . (\`mod\` n)) f
     d'drum = d1
     d'perc = d2
     d'bass = d3
