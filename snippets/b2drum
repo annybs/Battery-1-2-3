@@ -5,9 +5,9 @@
 # expand-env: (yas-indent-line fixed)
 # --
 -- @b2drum
-d'drum $ -- overlay (s "peri") $ -- (3,4) toggle
+d'drum $ -- overlay (s "${1:peri}") $ -- (3,4) toggle
   cf $
   -- every 3 (0.125 <~) $ -- (2)
-  s "psr*4 psr*2"
-  -- s "[[psr*4 psr*2] ! ! psr*8]/4" -- (1)
+  s "${2:psr}*4 $2*2"
+  -- s "[[$2*4 $2*2] ! ! $2*8]/4" -- (1)
   # gain 0.6

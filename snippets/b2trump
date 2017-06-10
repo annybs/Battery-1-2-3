@@ -5,7 +5,7 @@
 # expand-env: (yas-indent-line fixed)
 # --
 -- @b2trump
-d'tr $ cf $ whenmod 5 4 rev $ s "[~ trump ! !] ~"
+d'tr $ cf $ whenmod 5 4 rev $ s "[~ ${1:trump} ! !] ~"
   # n (slow 3.2 $ run 4)
   # gain 0.8
   # vowel (slow 3.2 "a e o")

@@ -7,6 +7,6 @@
 -- @b1drum1
 d'drum $ cf $ stack [
   -- every 4 (density 1.5) $ -- (2)
-  -- slow 2 $ s "peri [~ peri] ! ~", -- (1)
-  sound "~ psr:1"
+  -- slow 2 $ s "${1:peri} [~ $1] ! ~", -- (1)
+  sound "~ ${2:psr:1}"
   ]

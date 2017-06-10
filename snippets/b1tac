@@ -7,6 +7,6 @@
 -- @b1tac
 d'tac $ cf $
   -- whenmod 7 4 (density 1.5) $ -- (1)
-  s "[~ tacscan] ! ~ ~"
+  s "[~ ${1:tacscan}] ! ~ ~"
   # gain 0.8
   # vowel (slow 3 "e u")

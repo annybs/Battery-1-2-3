@@ -9,9 +9,9 @@ d'drum $ cf $
   -- every 3 rev $ -- (f4) and (f5) remove
   -- every' 8 8 rev $ -- (f3)
   stack [
-    -- slow 2 $ s "peri*2 [~ ~ ~ peri] [~ peri peri ~] ~", -- (2), (3) ^peri*2 -- (f5) remove
+    -- slow 2 $ s "${1:peri} [~ ~ ~ $1] [~ $1 $1 ~] ~", -- (2), (3) ^$1*2 -- (f5) remove
     -- whenmod 5 3 (density 2) $ -- (f1)
     -- iter 2 $ -- (f2)
-    sound "[tok*2 [rm tok]] [psr:1 tok*2]"
+    sound "[${4:tok}*2 [${3:rm} $4]] [${2:psr:1} $4*2]"
     -- # n (slow 3 $ run 4) -- (1)
     ]

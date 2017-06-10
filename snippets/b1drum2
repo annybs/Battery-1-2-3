@@ -7,8 +7,8 @@
 -- @b1drum2
 d'drum $ cf $
   stack [
-    s "peri*2", -- (-1) remove
+    s "${1:peri}*2", -- (-1) remove
     -- every' 8 8 (density 1.5) $ -- (2)
     -- every 2 (density 3) $ -- (1)
-    sound "~ psr:1"
+    sound "~ ${2:psr:1}"
     ]

@@ -5,7 +5,7 @@
 # expand-env: (yas-indent-line fixed)
 # --
 -- @b3bass
-let p = "bass*4" -- "{bass*4, wobble*3}" (4)
+let p = "${1:bass}*4" -- "{$1*4, ${2:wobble}*3}" (4)
   in d'bass $ cf $
      -- spread slow [2,(7/4)] $ -- (2)
      -- whenmod 7 6 (density 1.5) $ -- (1)

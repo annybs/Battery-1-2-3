@@ -1,7 +1,7 @@
 # -*- mode: snippet -*-
-# name: b1setup
+# name: b123setup
 # group: battery123
-# key: b1setup
+# key: b123setup
 # expand-env: (yas-indent-line fixed)
 # --
 let bpm b = cps (b/60)

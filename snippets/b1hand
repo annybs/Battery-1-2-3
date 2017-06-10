@@ -5,7 +5,7 @@
 # expand-env: (yas-indent-line fixed)
 # --
 -- @b1hand
-d'hand $ slow 8 $ rev . striate 256 $ s "hand*8"
+d'hand $ slow 8 $ rev . striate 256 $ s "${1:hand}*8"
   # speed 0.7
   -- # shape (scale 0 0.5 $ slow (10/4) sine1) -- (1)
   -- # pan (scale 0.25 0.75 $ slow (8/3) sine1) -- (2)

@@ -5,7 +5,7 @@
 # expand-env: (yas-indent-line fixed)
 # --
 -- @b1bass1
-d'bass $ slow 4 $ s "bass3 [~ bass3] ! ~"
+d'bass $ slow 4 $ s "${1:bass3} [~ $1] ! ~"
   # begin 0.2
   -- # n "0 1 0 0" -- (1)
   -- # speed (scale 1 (4/3) $ slow 8 sine1) -- (2)

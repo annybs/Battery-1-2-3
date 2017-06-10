@@ -6,7 +6,7 @@
 # --
 -- @b2bass
 d'bass $ slow 8 $
-  s "[jvbass ~] [jvbass [~ ~ ~ ~ jvbass]] [~ [~ ~ ~ ~ jvbass]] [~ jvbass !]"
+  s "[${1:jvbass} ~] [$1 [~ ~ ~ ~ $1]] [~ [~ ~ ~ ~ $1]] [~ $1 !]"
   # n (slow 2.8 "0 1 2")
   # vowel "i"
   # speed 0.8

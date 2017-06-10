@@ -7,7 +7,7 @@
 -- @b2percb
 let -- b = brak . iter 4 -- (1)
     b = cf . brak
-  in d'perc $ b $ s "uxay*4"
+  in d'perc $ b $ s "${1:uxay}*4"
      # n "1 0 1 2"
      # gain 0.8
      # shape "0.4 0.3 0.6"
