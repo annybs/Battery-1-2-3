@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: battery3
+# group: battery123
+# key: battery3
+# expand-env: (yas-indent-line fixed)
+# --
+b123setup
+b2arpy
+b1perc
+b3drum
+b3bass
+b1hand
+b1tac
+b2percb
+b2bass
+b1bass1
+b3arpy
+b1warbler

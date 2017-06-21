@@ -1,23 +1,13 @@
 # -*- mode: snippet -*-
-# name: battery123
+# name: battery2
 # group: battery123
-# key: battery123
+# key: battery2
 # expand-env: (yas-indent-line fixed)
 # --
 b123setup
-b1bass1
-b1hand
-b1perc
-b1bass2
-b1drum1
-b1tac
-b1drum2
-b1warbler
 b2perca
 b2drum
 b2percb
 b2trump
 b2bass
 b2arpy
-b3drum
-b3bass
